@@ -2,26 +2,25 @@ package meetup
 
 import dispatch._
 import dispatch.oauth._
-import com.ning.http.client.RequestBuilder
 import com.ning.http.client.oauth._
 
 sealed trait Credentials {
-  def sign(req: RequestBuilder): RequestBuilder
+  def sign(req: Req): Req
 }
 
 case class Key(key: String) extends Credentials {
-  def sign(req: RequestBuilder) =
+  def sign(req: Req) =
     req <<? Map("key" -> key)
 }
 
 case class OAuth2(access: String) extends Credentials {
-  def sign(req: RequestBuilder) =
+  def sign(req: Req) =
     req <<? Map("access_token" -> access)
 }
 
 
 case class OAuth1(cons: ConsumerKey, token: RequestToken) extends Credentials {
-  def sign(req: RequestBuilder) =
+  def sign(req: Req) =
     req <@(cons, token)
 }
 

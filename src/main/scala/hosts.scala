@@ -1,11 +1,10 @@
 package meetup
 
 import dispatch._
-import com.ning.http.client.RequestBuilder
 
 trait Hosts {
-  def apiHost: RequestBuilder
-  def streamHost: RequestBuilder
+  def apiHost: Req
+  def streamHost: Req
 }
 
 trait DefaultHosts extends Hosts {

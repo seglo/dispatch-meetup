@@ -1,10 +1,9 @@
 package meetup.stream
 
 import dispatch._
-import com.ning.http.client.RequestBuilder
 
 case class StreamBuilder(client: Client,
-                         base: RequestBuilder,
+                         base: Req,
                          eventVal: Option[String] = None,
                          sinceCountVal: Option[Int] = None,
                          sinceMtimeVal: Option[Long] = None)
